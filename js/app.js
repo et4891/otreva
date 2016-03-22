@@ -48,9 +48,16 @@
 
        // add name and price into the new array which is used to show in the table
        this.addPrices = function(name, price){
-           this.listAppPrices.push({name: name, price: price});
+           //Checks if the exact name, price property exists in the array and return boolean
+           var found = this.listAppPrices.some(function (e){
+               console.log(e.name);
+              return ((e.name === name) && (e.price === price)) ;
+           });
 
-           console.log((this.listAppPrices));
+           //If found not true then push the new values into the array
+           if(!found){
+               this.listAppPrices.push({name: name, price: price});
+           }
        };
 
        // adds all the prices of the array which gives the total
