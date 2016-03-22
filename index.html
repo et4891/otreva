@@ -1,15 +1,56 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="buildAppCalculator">
 <head>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.v311.css">
+    <link rel="stylesheet" href="css/style.css">
     <meta charset="UTF-8">
     <title>Otreva Challange</title>
 </head>
 <body>
+    <!--Platforms-->
     <div class="container">
-        <input type="text" ng-model="yourName">
-        <p>{{ yourName }}</p>
+        <!--Select platforms-->
+        <div class="panel-heading" ng-controller="PlatformController as platformCtrl">
+            <h1 class="text-center">Platforms</h1>
+
+            <!--Show all platforms-->
+            <div class="text-center">
+                <button ng-repeat="platform in platformCtrl.devices" class="btn btn-primary platform-btn-style">{{ platform.name }}</button>
+            </div>
+        </div><!-- end select platforms / PlatformController-->
+
+
+
+        <!--Select App Features-->
+        <div class="panel-heading" ng-controller="FeaturesController as featuresCtrl">
+            <h1 class="text-center">App Features</h1>
+            <div class="text-center">
+                <button ng-repeat="app in featuresCtrl.apps" class="btn btn-primary platform-btn-style" ng-click="featuresCtrl.addPrices(app.name, app.price)">{{ app.name }}</button><br>
+            </div>
+            <div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Device Added</th>
+                            <th>Device Price</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tr ng-repeat="appList in featuresCtrl.listAppPrices">
+                        <td>{{ appList.name }}</td>
+                        <td>{{ appList.price }}</td>
+                        <td><button class="btn btn-default" ng-click="featuresCtrl.remove($index)">Remove</button></td>
+                    </tr>
+                </table>
+                <div>Total : {{ featuresCtrl.totalAppPrice() }}</div>
+            </div>
+        </div><!-- end select app features / FeaturesController-->
+
     </div>
+
+
+
     <script src="js/angular.min.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>
