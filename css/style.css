@@ -6,3 +6,7 @@
 table.table-striped.table-hover{
     width: 35%;
 }
+
+.selected{
+	background-color: red;
+}

@@ -25,7 +25,7 @@
         <div class="panel-heading" ng-controller="FeaturesController as featuresCtrl">
             <h1 class="text-center">App Features</h1>
             <div class="text-center">
-                <button ng-repeat="app in featuresCtrl.apps" class="btn btn-primary platform-btn-style" ng-click="featuresCtrl.addPrices(app.name, app.price)">{{ app.name }}</button><br>
+                <div ng-repeat="app in featuresCtrl.apps track by $index" class="btn btn-primary platform-btn-style" ng-click="featuresCtrl.setSelected(app,$index)" ng-class="{selected: app.selected}">{{ app.name }}</div>
             </div>
             <div>
                 <table class="table table-striped table-hover">
@@ -39,7 +39,7 @@
                     <tr ng-repeat="appList in featuresCtrl.listAppPrices">
                         <td>{{ appList.name }}</td>
                         <td>{{ appList.price }}</td>
-                        <td><button class="btn btn-default" ng-click="featuresCtrl.remove($index)">Remove</button></td>
+                        <!--<td><button class="btn btn-default" ng-click="featuresCtrl.remove($index)">Remove</button></td>-->
                     </tr>
                 </table>
                 <div>Total : {{ featuresCtrl.totalAppPrice() }}</div>
